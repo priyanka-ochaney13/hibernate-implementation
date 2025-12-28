@@ -21,15 +21,34 @@ public class App
         l2.setBrand("Apple");
         l2.setModel("MacBook Pro");
 
+        Laptop l3 = new Laptop();
+        l3.setLid(3);
+        l3.setBrand("Lenovo");
+        l3.setModel("ThinkPad X1");
+
         Alien a1 = new Alien();
         a1.setAid(1);
         a1.setAname("Priyanka");
         a1.setTech("Java");
-        a1.setLaptops(List.of(l1, l2));
         
-        //many to one
-        l1.setAlien(a1);
-        l2.setAlien(a1);
+        Alien a2 = new Alien();
+        a2.setAid(2);
+        a2.setAname("Mitesh");
+        a2.setTech("Python");
+
+        Alien a3 = new Alien();
+        a3.setAid(3);
+        a3.setAname("Ankush");
+        a3.setTech("JavaScript");
+        
+        // Setting up Many-to-Many relationships
+        a1.setLaptops(List.of(l1, l2));
+        a2.setLaptops(List.of(l2, l3));
+        a3.setLaptops(List.of(l1, l3));
+
+        l1.setAliens(List.of(a1, a3));
+        l2.setAliens(List.of(a1, a2));
+        l3.setAliens(List.of(a2, a3));
 
         SessionFactory sf = new Configuration()
                                 .configure()
@@ -42,7 +61,10 @@ public class App
 
         s.persist(l1);
         s.persist(l2);
+        s.persist(l3);
         s.persist(a1);
+        s.persist(a2);
+        s.persist(a3);
 
         tx.commit();
         s.close();

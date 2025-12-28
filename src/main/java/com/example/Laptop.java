@@ -1,7 +1,8 @@
 package com.example;
-
+import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -11,13 +12,13 @@ public class Laptop {
     private String brand;
     private String model;
     
-    @ManyToOne
-    private Alien alien;
-    public Alien getAlien() {
-        return alien;
+    @ManyToMany(mappedBy = "laptops")
+    private List<Alien> aliens;
+    public List<Alien> getAliens() {
+        return aliens;
     }
-    public void setAlien(Alien alien) {
-        this.alien = alien;
+    public void setAliens(List<Alien> aliens) {
+        this.aliens = aliens;
     }
 
     public int getLid() {
