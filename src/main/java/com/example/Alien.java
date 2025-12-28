@@ -1,7 +1,10 @@
 package com.example;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity // This annotation specifies that the class is an entity and is mapped to a database table.
@@ -11,14 +14,16 @@ public class Alien {
     private int aid;
     private String aname;
     private String tech;
-    @OneToOne
-    private Laptop laptop;
+    // @OneToOne
+    // private Laptop laptop;
+    @OneToMany
+    private List<Laptop> laptops;
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }   
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     public int getAid() {
@@ -42,6 +47,6 @@ public class Alien {
 
     @Override
     public String toString() {
-        return "Alien [aid=" + aid + ", aname=" + aname + ", tech=" + tech + ", laptop=" + laptop + "]";
+        return "Alien [aid=" + aid + ", aname=" + aname + ", tech=" + tech + ", laptops=" + laptops + "]";
     }
 }
