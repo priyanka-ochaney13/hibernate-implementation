@@ -2,6 +2,7 @@ package com.example;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -9,6 +10,15 @@ public class Laptop {
     private int lid;
     private String brand;
     private String model;
+    
+    @ManyToOne
+    private Alien alien;
+    public Alien getAlien() {
+        return alien;
+    }
+    public void setAlien(Alien alien) {
+        this.alien = alien;
+    }
 
     public int getLid() {
         return lid;

@@ -27,11 +27,9 @@ public class App
         a1.setTech("Java");
         a1.setLaptops(List.of(l1, l2));
         
-        // Alien a2 = new Alien();
-        // a2.setAid(2);
-        // a2.setAname("someone");
-        // a2.setTech("Python");
-        // a2.setLaptops(List.of(l2));
+        //many to one
+        l1.setAlien(a1);
+        l2.setAlien(a1);
 
         SessionFactory sf = new Configuration()
                                 .configure()
@@ -45,7 +43,6 @@ public class App
         s.persist(l1);
         s.persist(l2);
         s.persist(a1);
-        //s.persist(a2);
 
         tx.commit();
         s.close();
